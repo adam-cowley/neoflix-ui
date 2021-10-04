@@ -1,28 +1,49 @@
 <template>
+  <section
+    class="
+      section
+      section--head
+      section--head-static
+      section--gradient
+      section--details-bg
+    "
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-xl-6">
+          <h1 class="section__title section__title--head">Graph Powered Movie Recommendations</h1>
 
-    <section class="section section--head section--head-static section--gradient section--details-bg">
-      Hero
-    </section>
-    <Section v-for="carousel in carousels" :key="carousel.title" :title="carousel.title" :to="carousel.to">
+          <p>Using the power of Graph Databases and Cypher to serve you real-time recommendations.</p>
 
-      <Grid>
-        <Column v-if="carousel.loading.value">
-          Loading..
-        </Column>
-        <GridItem
-          v-else
-          v-for="movie in carousel.movies"
-          :key="movie.id"
-          :to="`/movies/${movie.id}`"
-          :title="movie.title"
-          :rating="movie.rating"
-          :image="movie.poster"
-          :list="movie.genres"
-        />
+          <div class="article__btns">
+            <router-link to="/register" class="article__btn">Register Now</router-link>
+            <router-link to="/genres" class="article__btn article__btn--white">Browse Genres</router-link>
+          </div>
+        </div>
 
-      </Grid>
-    </Section>
-
+      </div>
+    </div>
+  </section>
+  <Section
+    v-for="carousel in carousels"
+    :key="carousel.title"
+    :title="carousel.title"
+    :to="carousel.to"
+  >
+    <Grid>
+      <Column v-if="carousel.loading.value"> Loading.. </Column>
+      <MovieGridItem
+        v-else
+        v-for="movie in carousel.movies"
+        :key="movie.id"
+        :to="`/movies/${movie.id}`"
+        :title="movie.title"
+        :rating="movie.rating"
+        :poster="movie.poster"
+        :list="movie.genres"
+      />
+    </Grid>
+  </Section>
 </template>
 
 <script lang="ts">
@@ -30,7 +51,7 @@ import { computed, defineComponent } from 'vue'
 
 import Section from '@/components/ui/Section.vue'
 import Grid from '@/components/ui/grid/Grid.vue'
-import GridItem from '@/components/ui/grid/Item.vue'
+import MovieGridItem from '@/components/ui/grid/Movie.vue'
 
 import { useLatestMovies, usePopularMovies } from '@/modules/movies'
 
@@ -39,7 +60,7 @@ export default defineComponent({
   components: {
     Section,
     Grid,
-    GridItem,
+    MovieGridItem,
   },
   setup() {
     const popular = usePopularMovies()
@@ -51,7 +72,7 @@ export default defineComponent({
     ])
 
     return {
-      carousels
+      carousels,
     }
   },
 })

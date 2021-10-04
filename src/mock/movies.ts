@@ -649,8 +649,8 @@ export const goodfellas = {
   plot: 'Henry Hill and his friends work their way up through the mob hierarchy.',
   year: 1990,
   genres: [
-    'Crime',
-    'Drama'
+    { link: '#', name: 'Crime' },
+    { link: '#', name: 'Drama' },
   ],
   directors: [
     {

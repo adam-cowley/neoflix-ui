@@ -1,5 +1,6 @@
 <template>
-  <section class="section">
+  <section class="section section--gradient">
+    <div v-if="background" class="section__bg" :data-bg="background" :style="`background: url(${background}) center / cover no-repeat;`"></div>
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -21,6 +22,10 @@ export default defineComponent({
   props: {
     to: String,
     title: String,
+    background: {
+      type: String,
+      required: false,
+    }
   },
 })
 </script>

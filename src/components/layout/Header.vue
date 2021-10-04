@@ -325,6 +325,10 @@
               <router-link to="/login" class="header__user">
                 <span>Sign in</span>
               </router-link>
+
+              <router-link to="/register" class="header__register">
+                <span>Register</span>
+              </router-link>
             </div>
           </div>
         </div>
@@ -348,3 +352,15 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.header__register {
+  font-size: 14px;
+  color: #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  padding-left: 8px;
+}
+.header__register:hover {
+  color: #2f80ed;
+}
+</style>

@@ -1,18 +1,18 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <div class="row">
+      <!-- <div class="row">
         <div class="
             col-12 col-sm-8 col-md-6 col-lg-4 col-xl-3
             order-4 order-md-1 order-lg-4 order-xl-1
           ">
-          <!-- <div class="footer__flixtv">
+          <div class="footer__flixtv">
             <img src="img/logo.svg" alt="" />
-          </div> -->
-          <!-- <p class="footer__tagline">
+          </div>
+          <p class="footer__tagline">
             Movies &amp; TV Shows, Online cinema,<br />
             Movie database HTML Template.
-          </p> -->
+          </p>
           <div class="footer__social">
             <a href="https://www.facebook.com/neo4j.graph.database" target="_blank">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +92,7 @@
             <a href="#">Accessibility</a>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="row">
         <div class="col-12">
