@@ -24,56 +24,20 @@
       </div>
     </div>
   </section>
-  <Section
-    v-for="carousel in carousels"
-    :key="carousel.title"
-    :title="carousel.title"
-    :to="carousel.to"
-  >
-    <Grid>
-      <Column v-if="carousel.loading.value"> Loading.. </Column>
-      <MovieGridItem
-        v-else
-        v-for="movie in carousel.movies"
-        :key="movie.id"
-        :to="`/movies/${movie.id}`"
-        :title="movie.title"
-        :rating="movie.rating"
-        :poster="movie.poster"
-        :list="movie.genres"
-      />
-    </Grid>
-  </Section>
+
+  <movie-grid title="Popular Movies" to="/popular" orderBy="imdbRating" />
+  <movie-grid title="Latest Releases" to="/latest" orderBy="releaseDate" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 
-import Section from '@/components/ui/Section.vue'
-import Grid from '@/components/ui/grid/Grid.vue'
-import MovieGridItem from '@/components/ui/grid/Movie.vue'
-
-import { useLatestMovies, usePopularMovies } from '@/modules/movies'
+import MovieGrid from '@/components/ui/home/MovieGrid.vue'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    Section,
-    Grid,
-    MovieGridItem,
-  },
-  setup() {
-    const popular = usePopularMovies()
-    const latest = useLatestMovies()
-
-    const carousels = computed(() => [
-      { title: 'Popular', to: '/popular', ...popular },
-      { title: 'Latest', to: '/latest', ...latest },
-    ])
-
-    return {
-      carousels,
-    }
+    MovieGrid,
   },
 })
 </script>

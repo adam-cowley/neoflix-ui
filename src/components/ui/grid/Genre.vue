@@ -2,7 +2,7 @@
   <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
     <router-link :to="to" class="category">
       <div class="category__cover">
-        <img :src="poster" alt="" />
+        <img :src="posterImage" alt="" />
       </div>
       <h3 class="category__title">{{ name }}</h3>
       <span class="category__value">{{ movies }}</span>
@@ -21,5 +21,10 @@ export default defineComponent({
     name: String,
     movies: Number,
   },
+  computed: {
+    posterImage() {
+      return this.poster || '/img/poster-placeholder.png'
+    }
+  }
 })
 </script>

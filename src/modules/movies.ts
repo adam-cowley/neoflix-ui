@@ -1,6 +1,4 @@
-/* eslint-disable */
-import { goodfellas, latest, popular } from '@/mock/movies';
-import { ref, Ref } from 'vue'
+import { APIResponse, Order, ORDER_DESC, PaginatedAPIResponse, useGetRequest, usePaginatedGetRequest } from './api'
 
 interface Person {
   id: string;
@@ -18,6 +16,7 @@ interface Movie {
   plot: string;
   year: number;
   rating: number;
+  runtime?: string | number;
   languages: string[];
   poster: string;
   genres: Genre[];
@@ -25,40 +24,10 @@ interface Movie {
   directors: Person[];
 }
 
-
-export function usePopularMovies() {
-  const loading = ref(true)
-
-  setTimeout(() => {
-    loading.value = false
-  }, Math.random() * 100)
-
-  const movies: Movie[] = popular
-
-  return {
-    loading,
-    movies,
-  }
-}
-
-export function useLatestMovies() {
-  const loading = ref(true)
-
-  setTimeout(() => {
-    loading.value = false
-  }, Math.random() * 100)
-
-  const movies: Movie[] = latest
-
-  return {
-    loading,
-    movies,
-  }
-}
-
 export const ORDER_BY_TITLE = 'title'
 export const ORDER_BY_RATING = 'imdbRating'
 export const ORDER_BY_RELEASE = 'releaseDate'
+export const ORDER_BY_SCORE = 'score'
 
 export const MOVIE_ORDER = [
   { label: 'Title', value: ORDER_BY_TITLE },
@@ -66,27 +35,52 @@ export const MOVIE_ORDER = [
   { label: 'Release Date', value: ORDER_BY_RELEASE },
 ]
 
-type OrderBy = typeof ORDER_BY_TITLE | typeof ORDER_BY_RATING | typeof ORDER_BY_RELEASE
+type MovieOrderBy = typeof ORDER_BY_TITLE | typeof ORDER_BY_RATING | typeof ORDER_BY_RELEASE
 
-export function useMoviesByGenre(genre: string, orderBy: OrderBy, limit: number, skip: number): { loading: Ref<boolean>, movies: Ref<Movie[]> } {
-  const loading = ref(true)
-  const movies: Ref<Movie[]> = ref<Movie[]>([])
+// export function usePopularMovies(): APIResponse<Movie> {
+//   return useGetRequest<Movie>(`/movies?orderBy=${ORDER_BY_RATING}&order=desc&limit=6`)
+// }
 
-  setTimeout(async () => {
-    movies.value = await getMoviesByGenre(genre, orderBy, limit, skip)
+// export function useLatestMovies(): APIResponse<Movie> {
+//   return useGetRequest<Movie>(`/movies?orderBy=${ORDER_BY_RELEASE}&order=desc&limit=6`)
+// }
 
-    loading.value = false
-  }, Math.random() * 1000)
-
-  return {
-    loading,
-    movies,
-  }
+export function useMovieList(orderBy: string, order: Order, limit = 6): APIResponse<Movie> {
+  return useGetRequest<Movie>(`/movies?orderBy=${orderBy}&order=${order}&limit=${limit}`)
 }
 
-export async function getMoviesByGenre(genre: string, orderBy: OrderBy, limit: number, skip: number): Promise<Movie[]> {
-  if ( orderBy === ORDER_BY_TITLE ) return Promise.resolve(latest)
-  if ( orderBy === ORDER_BY_RATING ) return Promise.resolve(popular)
+export function useMoviesByGenre(genre: string): PaginatedAPIResponse<Movie, MovieOrderBy> {
+  return usePaginatedGetRequest<Movie, MovieOrderBy>(`/genres/${genre}/movies`, ORDER_BY_TITLE)
+}
 
-  return Promise.resolve([ goodfellas as Movie ]) as Promise<Movie[]>
+export function useMovie(id: string): APIResponse<Movie> {
+  return useGetRequest<Movie>(`/movies/${id}`)
+}
+
+interface SimilarMovie extends Movie {
+  score: number;
+}
+
+export function useSimilarMovies(id: string): PaginatedAPIResponse<SimilarMovie, typeof ORDER_BY_SCORE> {
+  return usePaginatedGetRequest<SimilarMovie, typeof ORDER_BY_SCORE>(`/movies/${id}/similar`, ORDER_BY_SCORE)
+}
+
+interface User {
+  id: string;
+  name: string;
+}
+
+interface Rating {
+  rating: number;
+  timestamp: number;
+  user: User;
+}
+
+const ORDER_BY_TIMESTAMP = 'timestamp'
+const ORDER_BY_RATING_SCORE = 'rating'
+
+type RatingOrderBy = typeof ORDER_BY_TIMESTAMP | typeof ORDER_BY_RATING_SCORE
+
+export function useMovieRatings(id: string, limit: number): PaginatedAPIResponse<Rating, RatingOrderBy> {
+  return usePaginatedGetRequest<Rating, RatingOrderBy>(`/movies/${id}/ratings`, ORDER_BY_TIMESTAMP, ORDER_DESC, limit)
 }

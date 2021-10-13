@@ -29,7 +29,8 @@
       </h3>
       <ul class="card__list">
         <li v-for="item in list" :key="item">
-          <router-link :to="item.link" v-html="item.name" />
+          <!-- <router-link :to="item.link" v-html="item.name" /> -->
+          {{item.name}}
         </li>
       </ul>
     </div>

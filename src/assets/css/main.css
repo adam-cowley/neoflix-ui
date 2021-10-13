@@ -4167,8 +4167,8 @@ body::-webkit-scrollbar-thumb {
 .reviews__autor {
   display: block;
   position: relative;
-  padding-left: 55px;
-  margin-bottom: 20px;
+  /* padding-left: 55px; */
+  /* margin-bottom: 20px; */
 }
 .reviews__avatar {
   position: absolute;
