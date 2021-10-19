@@ -18,34 +18,42 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
   },
   {
+    path: '/logout',
+    name: 'Logout',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Logout.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
+  },
+  {
     path: '/genres',
-    name: 'Genres',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Genres.vue')
+    name: 'GenreList',
+    component: () => import(/* webpackChunkName: "about" */ '../views/GenreList.vue')
   },
   {
     path: '/genres/:name',
     name: 'GenreView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/GenreView.vue')
   },
   {
     path: '/movies/:id',
     name: 'MovieView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/MovieView.vue')
+  },
+  {
+    path: '/latest',
+    name: 'LatestMovies',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MovieList.vue')
+  },
+  {
+    path: '/popular',
+    name: 'PopularMovies',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MovieList.vue')
   },
 ]
 

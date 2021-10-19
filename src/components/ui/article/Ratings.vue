@@ -52,7 +52,7 @@ export default defineComponent({
   },
   setup() {
     const { params } = useRoute()
-    const { ratings, loading, more, loadMore } = useMovieRatings(
+    const { data: ratings, loading, more, loadMore } = useMovieRatings(
       params.id,
       6
     )

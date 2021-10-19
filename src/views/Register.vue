@@ -22,6 +22,10 @@
               <div class="sign__group error" v-if="error">{{error}}</div>
 
               <div class="sign__group">
+                <input v-model="name" type="text" class="sign__input" placeholder="Your Name" />
+              </div>
+
+              <div class="sign__group">
                 <input v-model="email" type="text" class="sign__input" placeholder="Email" />
               </div>
 
@@ -33,8 +37,8 @@
                   placeholder="Password"
                 />
               </div>
-              <button class="sign__btn" type="button" @click.prevent="onSubmit">Sign in</button>
-              <span class="sign__text">Don't have an account? <router-link to="/register">Register now</router-link></span>
+              <button class="sign__btn" type="button" @click.prevent="onSubmit">Register</button>
+              <span class="sign__text">Already have an account? <router-link to="/login">Sign In</router-link></span>
             </form>
           </div>
         </div>
@@ -45,18 +49,18 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, watch } from 'vue'
-import { LoginRequest, useAuth } from '@/modules/auth'
+import { RegisterRequest, useAuth } from '@/modules/auth'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
-    const { user, error, login } = useAuth()
+    const { user, error, register } = useAuth()
     const { push } = useRouter()
 
-    const state = reactive<LoginRequest>({ email: 'graphacademy@neo4j.com', password: 'letmein' })
+    const state = reactive<RegisterRequest>({ email: 'graphacademy@neo4j.com', password: 'letmein', name: 'That Guy' })
 
     const onSubmit = () => {
-      login(state.email, state.password)
+      register(state.email, state.password, state.name)
     }
 
     // If logged in, redirect to home page

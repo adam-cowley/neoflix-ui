@@ -40,7 +40,7 @@
           <MovieGridItem
             v-for="movie in movies"
             :key="movie.id"
-            :to="`/movies/${movie.id}`"
+            :to="{name: 'MovieView', params: {id: movie.id}}"
             :title="movie.title"
             :rating="movie.rating"
             :poster="movie.poster"

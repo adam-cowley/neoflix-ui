@@ -1,5 +1,6 @@
 <template>
   <div v-if="loading"></div>
+  <div v-else-if="!movie"></div>
   <section
     v-else
     class="section section--head section--gradient section--details-bg"
@@ -108,7 +109,7 @@
     </div>
   </section>
 
-  <section class="section" v-if="similar.length">
+  <section class="section" v-if="similar && similar.length">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -117,12 +118,12 @@
       </div>
 
       <Grid>
-        <Column v-if="similarLoading.value"> Loading.. </Column>
+        <Column v-if="similarLoading.value"> Loading Similar movies... </Column>
         <MovieGridItem
           v-else
           v-for="m in similar"
           :key="m.id"
-          :to="`/movies/${m.id}`"
+          :to="{name: 'MovieView', params: {id: movie.id}}"
           :title="m.title"
           :rating="m.rating"
           :poster="m.poster"
@@ -154,7 +155,7 @@ export default defineComponent({
   },
   setup() {
     const { params } = useRoute()
-    const { loading, movie } = useMovie(params.id)
+    const { loading, data: movie } = useMovie(params.id)
 
     const { movies: similar, loading: similarLoading } = useSimilarMovies(
       params.id

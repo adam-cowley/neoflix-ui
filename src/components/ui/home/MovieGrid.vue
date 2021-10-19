@@ -4,21 +4,25 @@
     :to="to"
   >
     <Grid>
-      <Column v-if="loading.value"> Loading.. </Column>
+      <div v-if="loading.value"> Loading.. </div>
       <template v-else>
-      <template v-for="movie in data">
-        <MovieGridItem
-
-          v-if="movie"
-          :key="movie.id"
-          :to="`/movies/${movie.id}`"
-          :title="movie.title"
-          :rating="movie.rating"
-          :poster="movie.poster"
-          :list="movie.genres"
-        />
+        <template v-for="movie in data">
+          <MovieGridItem
+            v-if="movie"
+            :key="movie.id"
+            :to="{name: 'MovieView', params: {id: movie.id}}"
+            :title="movie.title"
+            :rating="movie.rating"
+            :poster="movie.poster"
+            :list="movie.genres"
+          />
+        </template>
       </template>
-      </template>
+      <div class="row" v-if="showLoadMore && more">
+        <div class="col-12">
+          <button class="catalog__more" type="button" @click="() => loadMore()">Load more</button>
+        </div>
+      </div>
     </Grid>
   </Section>
 </template>
@@ -30,7 +34,7 @@ import Section from '@/components/ui/Section.vue'
 import Grid from '@/components/ui/grid/Grid.vue'
 import MovieGridItem from '@/components/ui/grid/Movie.vue'
 import { useMovieList } from '@/modules/movies'
-import { ORDER_DESC } from '@/modules/api'
+import { Order, ORDER_DESC } from '@/modules/api'
 
 export default defineComponent({
   components: {
@@ -42,15 +46,18 @@ export default defineComponent({
     title: String,
     to: String,
     orderBy: String,
+    order: String,
+    showLoadMore: Boolean,
   },
   setup(props) {
-    const { loading, data } = useMovieList(props.orderBy as string, ORDER_DESC, 5)
+    const { loading, data, more, loadMore } = useMovieList(props.orderBy as string, props.order as Order || ORDER_DESC, 6)
 
     return {
       loading,
       data,
+      more,
+      loadMore
     }
-  }
-
+  },
 })
 </script>

@@ -46,6 +46,45 @@ export function useGetRequest<T>(url: string): APIResponse<T> {
   }
 }
 
+interface APIPostResponse<Req, Res> extends APIResponse<Res> {
+  post: (payload: Req) => void
+}
+
+// eslint-disable-next-line
+export function usePostRequest<Req extends Record<string, any>, Res>(url: string): APIPostResponse<Req, Res> {
+  const loading = ref<boolean>(false)
+  const code = ref<number | undefined>()
+  const error = ref<string | undefined>()
+  const data = ref<Res | undefined>()
+
+  const post = (payload: Req) => {
+    loading.value = true
+
+    api.post(url, payload)
+      .then(res => {
+        code.value = res.status
+        data.value = res.data as Res | undefined
+        error.value = undefined
+      })
+      .catch((e: AxiosError) => {
+        code.value = e.response?.status
+        error.value = e.message
+        data.value = undefined
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  }
+
+  return {
+    post,
+    loading,
+    code,
+    error,
+    data,
+  }
+}
+
 interface PaginationFields<O extends string> {
   sort: Ref<O | undefined>;
   setSort: (field: O | undefined) => void;

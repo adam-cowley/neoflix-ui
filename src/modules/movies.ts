@@ -35,18 +35,10 @@ export const MOVIE_ORDER = [
   { label: 'Release Date', value: ORDER_BY_RELEASE },
 ]
 
-type MovieOrderBy = typeof ORDER_BY_TITLE | typeof ORDER_BY_RATING | typeof ORDER_BY_RELEASE
+export type MovieOrderBy = typeof ORDER_BY_TITLE | typeof ORDER_BY_RATING | typeof ORDER_BY_RELEASE
 
-// export function usePopularMovies(): APIResponse<Movie> {
-//   return useGetRequest<Movie>(`/movies?orderBy=${ORDER_BY_RATING}&order=desc&limit=6`)
-// }
-
-// export function useLatestMovies(): APIResponse<Movie> {
-//   return useGetRequest<Movie>(`/movies?orderBy=${ORDER_BY_RELEASE}&order=desc&limit=6`)
-// }
-
-export function useMovieList(orderBy: string, order: Order, limit = 6): APIResponse<Movie> {
-  return useGetRequest<Movie>(`/movies?orderBy=${orderBy}&order=${order}&limit=${limit}`)
+export function useMovieList(orderBy: string, order: Order, limit = 6): PaginatedAPIResponse<Movie, MovieOrderBy> {
+  return usePaginatedGetRequest<Movie, MovieOrderBy>(`/movies?orderBy=${orderBy}&order=${order}&limit=${limit}`)
 }
 
 export function useMoviesByGenre(genre: string): PaginatedAPIResponse<Movie, MovieOrderBy> {

@@ -16,8 +16,8 @@
           <p>Using the power of Graph Databases and Cypher to serve you real-time recommendations.</p>
 
           <div class="article__btns">
-            <router-link to="/register" class="article__btn">Register Now</router-link>
-            <router-link to="/genres" class="article__btn article__btn--white">Browse Genres</router-link>
+            <router-link :to="{ name: 'Register' }" class="article__btn">Register Now</router-link>
+            <router-link :to="{ name: 'GenreList' }" class="article__btn article__btn--white">Browse Genres</router-link>
           </div>
         </div>
 

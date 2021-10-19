@@ -12,7 +12,7 @@
 
       <grid v-else>
         <genre v-for="genre in genres" :key="genre.name"
-          :to="genre.link"
+          :to="{ name: 'GenreView', params: { name: genre.name } }"
           :poster="genre.poster"
           :name="genre.name"
           :movies="genre.movies"
