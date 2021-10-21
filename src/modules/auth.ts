@@ -1,4 +1,4 @@
-import { Ref, toRefs, reactive } from 'vue'
+import { Ref, toRefs, reactive, computed, ComputedRef } from 'vue'
 import { api } from './api'
 
 export interface LoginRequest {
@@ -24,18 +24,22 @@ interface AuthHook {
   user: Ref<User | undefined>;
   error: Ref<string | undefined>;
   token: Ref<string | undefined>;
+  authenticated: ComputedRef<boolean>;
+  details: Ref<Record<string, any> | undefined>;
 }
 
 interface AuthState {
   user: User | undefined;
   error: string | undefined;
   token: string | undefined;
+  details: Record<string, any> | undefined;
 }
 
 const state = reactive<AuthState>({
   user: undefined,
   token: undefined,
   error: undefined,
+  details: undefined,
 })
 
 export function useAuth(): AuthHook {
@@ -44,15 +48,18 @@ export function useAuth(): AuthHook {
       // eslint-disable-next-line
       .then((res: any) => {
         state.error = undefined
+        state.details = undefined
         state.user = res.data
         state.token = res.data.token
 
         Object.assign(api.defaults, { headers: { Authorization: `Bearer ${state.token}` } })
       })
       .catch(e => {
-        state.error = e.message
+        state.error = e.response.data.message
         state.user = undefined
         state.token = undefined
+
+        state.details = e.response.data.details
       })
   }
 
@@ -61,6 +68,7 @@ export function useAuth(): AuthHook {
       // eslint-disable-next-line
       .then((res: any) => {
         state.error = undefined
+        state.details = undefined
         state.user = res.data
         state.token = res.data.token
 
@@ -84,10 +92,13 @@ export function useAuth(): AuthHook {
     })
   }
 
+  const authenticated = computed(() => state.user !== undefined)
+
   return {
     register,
     login,
     logout,
+    authenticated,
     ...toRefs(state),
   }
 }

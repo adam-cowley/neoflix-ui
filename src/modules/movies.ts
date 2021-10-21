@@ -10,18 +10,20 @@ interface Genre {
   name: string;
 }
 
-interface Movie {
+export interface Movie {
   id: string;
   title: string;
   plot: string;
   year: number;
   rating: number;
+  imdbRating: number;
   runtime?: string | number;
   languages: string[];
   poster: string;
   genres: Genre[];
   actors: Person[];
   directors: Person[];
+  favorite?: boolean;
 }
 
 export const ORDER_BY_TITLE = 'title'
@@ -75,4 +77,12 @@ type RatingOrderBy = typeof ORDER_BY_TIMESTAMP | typeof ORDER_BY_RATING_SCORE
 
 export function useMovieRatings(id: string, limit: number): PaginatedAPIResponse<Rating, RatingOrderBy> {
   return usePaginatedGetRequest<Rating, RatingOrderBy>(`/movies/${id}/ratings`, ORDER_BY_TIMESTAMP, ORDER_DESC, limit)
+}
+
+export function useMoviesByActor(id: string): PaginatedAPIResponse<Movie, MovieOrderBy> {
+  return usePaginatedGetRequest<Movie, MovieOrderBy>(`/people/${id}/acted`, ORDER_BY_TITLE)
+}
+
+export function useMoviesByDirector(id: string): PaginatedAPIResponse<Movie, MovieOrderBy> {
+  return usePaginatedGetRequest<Movie, MovieOrderBy>(`/people/${id}/directed`, ORDER_BY_TITLE)
 }

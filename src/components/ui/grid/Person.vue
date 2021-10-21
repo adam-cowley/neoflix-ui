@@ -3,12 +3,12 @@
     class="col-6 col-sm-6 col-md-3 col-xl-3"
   >
     <div class="card">
-      <router-link :to="'/person/' + id" class="card__cover">
-        <img :src="poster" alt="" />
+      <router-link :to="{name: 'PersonView', params: { id } }" class="card__cover">
+        <img :src="posterImage" alt="" />
       </router-link>
 
       <h3 class="card__title">
-        <router-link :to="'/person/' + id" v-html="name" />
+        <router-link :to="{name: 'PersonView', params: { id } }" v-html="name" />
       </h3>
       <ul class="card__list">
         <!-- todo: date conversion -->
@@ -29,6 +29,11 @@ export default defineComponent({
     poster: String,
     born: Number,
     bornIn: String,
+  },
+  computed: {
+    posterImage() {
+      return this.poster || '/img/poster-placeholder.png'
+    }
   },
 })
 </script>

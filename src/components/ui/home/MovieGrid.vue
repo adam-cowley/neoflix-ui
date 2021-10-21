@@ -4,17 +4,20 @@
     :to="to"
   >
     <Grid>
-      <div v-if="loading.value"> Loading.. </div>
+      <div v-if="loading.value"> Loading... </div>
       <template v-else>
         <template v-for="movie in data">
           <MovieGridItem
             v-if="movie"
             :key="movie.id"
             :to="{name: 'MovieView', params: {id: movie.id}}"
+            :id="movie.id"
             :title="movie.title"
+            :imdbRating="movie.imdbRating"
             :rating="movie.rating"
             :poster="movie.poster"
             :list="movie.genres"
+            :favorite="movie.favorite"
           />
         </template>
       </template>

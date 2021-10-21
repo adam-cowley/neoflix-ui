@@ -18,42 +18,57 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
   {
     path: '/logout',
     name: 'Logout',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Logout.vue')
+    component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue')
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../views/Register.vue')
   },
   {
     path: '/genres',
     name: 'GenreList',
-    component: () => import(/* webpackChunkName: "about" */ '../views/GenreList.vue')
+    component: () => import(/* webpackChunkName: "genres.list" */ '../views/GenreList.vue')
   },
   {
     path: '/genres/:name',
     name: 'GenreView',
-    component: () => import(/* webpackChunkName: "about" */ '../views/GenreView.vue')
+    component: () => import(/* webpackChunkName: "genres.view" */ '../views/GenreView.vue')
+  },
+  {
+    path: '/people',
+    name: 'PeopleList',
+    component: () => import(/* webpackChunkName: "people.list" */ '../views/PeopleList.vue')
+  },
+  {
+    path: '/people/:id',
+    name: 'PersonView',
+    component: () => import(/* webpackChunkName: "people.view" */ '../views/PersonView.vue')
   },
   {
     path: '/movies/:id',
     name: 'MovieView',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MovieView.vue')
+    component: () => import(/* webpackChunkName: "movie.view" */ '../views/MovieView.vue')
   },
   {
     path: '/latest',
     name: 'LatestMovies',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MovieList.vue')
+    component: () => import(/* webpackChunkName: "movies.latest" */ '../views/MovieList.vue')
   },
   {
     path: '/popular',
     name: 'PopularMovies',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MovieList.vue')
+    component: () => import(/* webpackChunkName: "movies.popular" */ '../views/MovieList.vue')
+  },
+  {
+    path: '/favorites',
+    name: 'Favorites',
+    component: () => import(/* webpackChunkName: "favorites" */ '../views/Favorites.vue')
   },
 ]
 

@@ -66,8 +66,15 @@
               <li class="header__nav-item">
                 <router-link
                   class="header__nav-link"
+                  :to="{ name: 'PeopleList' }"
+                  >People</router-link
+                >
+              </li>
+              <li class="header__nav-item">
+                <router-link
+                  class="header__nav-link"
                   :to="{ name: 'PopularMovies' }"
-                  >Popular</router-link
+                  >Popular Movies</router-link
                 >
               </li>
               <li class="header__nav-item">
@@ -78,8 +85,8 @@
                 >
               </li>
               <li class="header__nav-item">
-                <router-link class="header__nav-link" :to="{ name: 'Home' }"
-                  >My List</router-link
+                <router-link class="header__nav-link" :to="{ name: 'Favorites' }"
+                  >My Favorites</router-link
                 >
               </li>
             </ul>
@@ -94,7 +101,7 @@
               </router-link>
             </div>
             <div class="header__actions" v-else>
-              <router-link :to="{ name: 'Home' }" class="header__user">
+              <router-link :to="{ name: 'Favorites' }" class="header__user">
                 <span>{{ greeting }}</span>
               </router-link>
               <router-link :to="{ name: 'Logout' }" class="header__register">

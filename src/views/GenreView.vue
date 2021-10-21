@@ -41,10 +41,13 @@
             v-for="movie in movies"
             :key="movie.id"
             :to="{name: 'MovieView', params: {id: movie.id}}"
+            :id="movie.id"
             :title="movie.title"
+            :imdbRating="movie.imdbRating"
             :rating="movie.rating"
             :poster="movie.poster"
             :list="movie.genres"
+            :favorite="movie.favorite"
           />
         </grid>
 
