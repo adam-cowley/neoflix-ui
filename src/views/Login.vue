@@ -1,27 +1,34 @@
 <template>
-<form-wrapper
+  <form-wrapper
     :error="error"
     :details="details"
     buttonText="Sign In"
     :onSubmit="onSubmit"
   >
-  <div class="sign__group">
-                <input v-model="email" type="text" class="sign__input" placeholder="Email" />
-              </div>
+    <div class="sign__group">
+      <input
+        v-model="email"
+        type="text"
+        class="sign__input"
+        placeholder="Email"
+      />
+    </div>
 
-              <div class="sign__group">
-                <input
-                  v-model="password"
-                  type="password"
-                  class="sign__input"
-                  placeholder="Password"
-                />
-              </div>
-              <template v-slot:footer>
-                <span class="sign__text">Don't have an account? <router-link to="/register">Register now</router-link></span>
-              </template>
-</form-wrapper>
-
+    <div class="sign__group">
+      <input
+        v-model="password"
+        type="password"
+        class="sign__input"
+        placeholder="Password"
+      />
+    </div>
+    <template v-slot:footer>
+      <span class="sign__text"
+        >Don't have an account?
+        <router-link to="/register">Register now</router-link></span
+      >
+    </template>
+  </form-wrapper>
 </template>
 
 <script lang="ts">
@@ -36,7 +43,10 @@ export default defineComponent({
     const { user, error, login } = useAuth()
     const { push } = useRouter()
 
-    const state = reactive<LoginRequest>({ email: 'graphacademy@neo4j.com', password: 'letmein' })
+    const state = reactive<LoginRequest>({
+      email: '',
+      password: '',
+    })
 
     const onSubmit = () => {
       login(state.email, state.password)
@@ -57,7 +67,7 @@ export default defineComponent({
     }
   },
   components: {
-    FormWrapper
+    FormWrapper,
   },
 })
 </script>

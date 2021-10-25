@@ -57,9 +57,9 @@ export default defineComponent({
     const { push } = useRouter()
 
     const state = reactive<RegisterRequest>({
-      email: 'graphacademy@neo4j.com',
-      password: 'letmein',
-      name: 'Graphista General',
+      email: '',
+      password: '',
+      name: '',
     })
 
     const onSubmit = () => {
