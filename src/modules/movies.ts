@@ -28,7 +28,7 @@ export interface Movie {
 
 export const ORDER_BY_TITLE = 'title'
 export const ORDER_BY_RATING = 'imdbRating'
-export const ORDER_BY_RELEASE = 'releaseDate'
+export const ORDER_BY_RELEASE = 'released'
 export const ORDER_BY_SCORE = 'score'
 
 export const MOVIE_ORDER = [

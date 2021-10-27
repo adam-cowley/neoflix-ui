@@ -33,7 +33,7 @@ export default defineComponent({
   computed: {
     posterImage() {
       return this.poster || '/img/poster-placeholder.png'
-    }
+    },
   },
 })
 </script>

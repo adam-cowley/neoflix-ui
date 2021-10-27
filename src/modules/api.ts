@@ -7,7 +7,7 @@ export const ORDER_DESC = 'desc'
 export type Order = typeof ORDER_ASC | typeof ORDER_DESC
 
 export const api = axios.create({
-  baseURL: process.env.VUE_APP_API_BASE_URL,
+  baseURL: process.env.VUE_APP_API_BASE_URL || '/api',
 })
 
 export interface APIResponse<T> {
