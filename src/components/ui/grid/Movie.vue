@@ -29,7 +29,6 @@
       </h3>
       <ul class="card__list">
         <li v-for="item in list" :key="item">
-          <!-- <router-link :to="item.link" v-html="item.name" /> -->
           {{item.name}}
         </li>
       </ul>
@@ -38,6 +37,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable */
 import { api } from '@/modules/api'
 import { useAuth } from '@/modules/auth'
 import { useNotification } from '@/modules/notification'
@@ -56,7 +56,7 @@ export default defineComponent({
   },
   props: {
     to: Object,
-    id: Number,
+    tmdbId: Number,
     poster: String,
     rating: Number,
     imdbRating: Number,
@@ -77,7 +77,7 @@ export default defineComponent({
   methods: {
     toggleFavorite() {
       if (this.isFavorite) {
-        api.delete(`/account/favorites/${this.id}`)
+        api.delete(`/account/favorites/${this.tmdbId}`)
           // eslint-disable-next-line
           .then((res: any) => {
             this.isFavorite = res.data.favorite
@@ -85,7 +85,7 @@ export default defineComponent({
             this.setNotification('success', 'This movie has been removed from your favorites')
           })
       } else {
-        api.post(`/account/favorites/${this.id}`)
+        api.post(`/account/favorites/${this.tmdbId}`)
           // eslint-disable-next-line
           .then((res: any) => {
             this.isFavorite = res.data.favorite

@@ -11,7 +11,8 @@ interface Genre {
 }
 
 export interface Movie {
-  id: string;
+  tmdbId: string;
+  imdbId: string;
   title: string;
   plot: string;
   year: number;

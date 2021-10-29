@@ -46,12 +46,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "people.list" */ '../views/PeopleList.vue')
   },
   {
-    path: '/people/:id',
+    path: '/people/:tmdbId',
     name: 'PersonView',
     component: () => import(/* webpackChunkName: "people.view" */ '../views/PersonView.vue')
   },
   {
-    path: '/movies/:id',
+    path: '/movies/:tmdbId',
     name: 'MovieView',
     component: () => import(/* webpackChunkName: "movie.view" */ '../views/MovieView.vue')
   },
@@ -69,6 +69,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/favorites',
     name: 'Favorites',
     component: () => import(/* webpackChunkName: "favorites" */ '../views/Favorites.vue')
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: { name: 'Home' },
   },
 ]
 

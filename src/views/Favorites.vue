@@ -17,9 +17,9 @@
   <grid v-else-if="data && data.length">
     <MovieGridItem
       v-for="movie in data"
-      :key="movie.id"
-      :to="{name: 'MovieView', params: {id: movie.id}}"
-      :id="movie.id"
+      :key="movie.tmdbId"
+      :to="{name: 'MovieView', params: {tmdbId: movie.tmdbId}}"
+      :tmdbId="movie.tmdbId"
       :title="movie.title"
       :imdbRating="movie.imdbRating"
       :rating="movie.rating"

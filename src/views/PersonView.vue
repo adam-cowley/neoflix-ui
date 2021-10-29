@@ -68,12 +68,12 @@
                 <Grid v-if="tab === 'acted'">
                   <div v-if="actedInLoading.value">Loading...</div>
                   <template v-else>
-                    <template v-for="movie in actedIn" :key="movie.id">
+                    <template v-for="movie in actedIn" :key="movie.tmdbId">
                       <MovieGridItem
                         v-if="movie"
-                        :key="movie.id"
-                        :to="{ name: 'MovieView', params: { id: movie.id } }"
-                        :id="movie.id"
+                        :key="movie.tmdbId"
+                        :to="{ name: 'MovieView', params: { id: movie.tmdbId } }"
+                        :tmdbId="movie.tmdbId"
                         :title="movie.title"
                         :imdbRating="movie.imdbRating"
                         :rating="movie.rating"
@@ -99,12 +99,12 @@
                 <Grid v-if="tab === 'directed'">
                   <div v-if="directedLoading.value">Loading...</div>
                   <template v-else>
-                    <template v-for="movie in directed" :key="movie.id">
+                    <template v-for="movie in directed" :key="movie.tmdbId">
                       <MovieGridItem
                         v-if="movie"
-                        :key="movie.id"
-                        :to="{ name: 'MovieView', params: { id: movie.id } }"
-                        :id="movie.id"
+                        :key="movie.tmdbId"
+                        :to="{ name: 'MovieView', params: { tmdbId: movie.tmdbId } }"
+                        :tmdbId="movie.tmdbId"
                         :title="movie.title"
                         :imdbRating="movie.imdbRating"
                         :rating="movie.rating"
@@ -138,10 +138,10 @@
                   <Grid>
                     <div v-if="similarLoading.value">Loading...</div>
                     <template v-else>
-                      <template v-for="person in similar" :key="person.id">
+                      <template v-for="person in similar" :key="person.tmdbId">
                         <PersonGridItem
                           class="col-md-6 col-xl-6"
-                          :id="person.id"
+                          :tmdbId="person.tmdbId"
                           :name="person.name"
                           :poster="person.poster"
                           :born="person.born"
@@ -177,7 +177,7 @@ export default defineComponent({
   },
   setup() {
     const { params } = useRoute()
-    const { loading, data, error } = usePerson(params.id as string)
+    const { loading, data, error } = usePerson(params.tmdbId as string)
 
     const tab = ref<string>('acted') // 'acted' | 'directed' | 'similar'
 
@@ -190,17 +190,17 @@ export default defineComponent({
       data: actedIn,
       more: actedInMore,
       loadMore: actedInLoadMore,
-    } = useMoviesByActor(params.id as string)
+    } = useMoviesByActor(params.tmdbId as string)
 
     const {
       loading: directedLoading,
       data: directed,
       more: directedMore,
       loadMore: directedLoadMore,
-    } = useMoviesByDirector(params.id as string)
+    } = useMoviesByDirector(params.tmdbId as string)
 
     const { loading: similarLoading, data: similar } = useSimilarPeople(
-      params.id as string
+      params.tmdbId as string
     )
 
     return {

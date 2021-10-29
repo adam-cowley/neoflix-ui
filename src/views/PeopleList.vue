@@ -30,8 +30,8 @@
         <grid v-else>
           <person
             v-for="person in data"
-            :key="person.id"
-            :id="person.id"
+            :key="person.tmdbId"
+            :tmdbId="person.tmdbId"
             :name="person.name"
             :poster="person.poster"
             :born="person.born"

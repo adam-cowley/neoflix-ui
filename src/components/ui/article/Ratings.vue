@@ -4,7 +4,7 @@
     <span>{{ count }}</span>
   </div>
 
-  <rating-form :id="id" />
+  <rating-form :tmdbId="tmdbId" />
 
   <ul class="reviews__list">
     <li
@@ -13,7 +13,8 @@
       :key="rating.user.id"
     >
       <div class="reviews__autor">
-        <router-link :to="'/user/'+ rating.user.id" class="reviews__name" v-html="rating.user.name" />
+        <!-- <router-link :to="'/user/'+ rating.user.id" class="reviews__name" v-html="rating.user.name" /> -->
+        <span class="reviews__name" v-html="rating.user.name" />
         <!-- todo: date -->
         <span class="reviews__time" v-html="rating.timestamp" />
         <span class="reviews__rating"
@@ -47,13 +48,13 @@ export default defineComponent({
     RatingForm,
   },
   props: {
-    id: Number,
+    tmdbId: Number,
     count: Number,
   },
   setup() {
     const { params } = useRoute()
     const { data: ratings, loading, more, loadMore } = useMovieRatings(
-      params.id,
+      params.tmdbId,
       6
     )
 

@@ -61,8 +61,8 @@
 
                 <person
                   v-for="person in movie.directors"
-                  :key="person.id"
-                  :id="person.id"
+                  :key="person.tmdbId"
+                  :tmdbId="person.tmdbId"
                   :name="person.name"
                   :poster="person.poster"
                   :born="person.born"
@@ -79,8 +79,8 @@
 
                 <person
                   v-for="person in movie.actors"
-                  :key="person.id"
-                  :id="person.id"
+                  :key="person.tmdbId"
+                  :tmdbId="person.tmdbId"
                   :name="person.name"
                   :poster="person.poster"
                   :born="person.born"
@@ -93,7 +93,7 @@
           <div class="col-12 col-xl-4">
             <div class="sidebar sidebar--mt">
             <ratings
-              :id="movie.id"
+              :tmdbId="movie.tmdbId"
               :count="movie.ratingCount"
             />
 
@@ -117,8 +117,8 @@
         <MovieGridItem
           v-else
           v-for="m in similar"
-          :key="m.id"
-          :to="{name: 'MovieView', params: {id: movie.id}}"
+          :key="m.tmdbId"
+          :to="{name: 'MovieView', params: {tmdbId: movie.tmdbId}}"
           :title="m.title"
           :rating="m.rating"
           :imdbRating="movie.imdbRating"
@@ -152,10 +152,10 @@ export default defineComponent({
   },
   setup() {
     const { params } = useRoute()
-    const { loading, data: movie } = useMovie(params.id)
+    const { loading, data: movie } = useMovie(params.tmdbId)
 
     const { movies: similar, loading: similarLoading } = useSimilarMovies(
-      params.id
+      params.tmdbId
     )
 
     return {

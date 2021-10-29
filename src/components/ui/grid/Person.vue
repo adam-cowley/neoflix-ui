@@ -3,12 +3,12 @@
     class="col-6 col-sm-6 col-md-3 col-xl-3"
   >
     <div class="card">
-      <router-link :to="{name: 'PersonView', params: { id } }" class="card__cover">
+      <router-link :to="{name: 'PersonView', params: { tmdbId } }" class="card__cover">
         <img :src="posterImage" alt="" />
       </router-link>
 
       <h3 class="card__title">
-        <router-link :to="{name: 'PersonView', params: { id } }" v-html="name" />
+        <router-link :to="{name: 'PersonView', params: { tmdbId } }" v-html="name" />
       </h3>
       <ul class="card__list">
         <!-- todo: date conversion -->
@@ -24,7 +24,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
-    id: Number,
+    tmdbId: Number,
     name: String,
     poster: String,
     born: Number,
