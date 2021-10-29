@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12">
           <div class="sign__content">
-            <form action="#" class="sign__form">
+            <form action="#" class="sign__form" @submit.prevent="onSubmit">
               <svg
                 width="38px"
                 height="36px"
@@ -51,8 +51,7 @@
 
               <button
                 class="sign__btn"
-                type="button"
-                @click.prevent="onSubmit"
+                type="submit"
                 v-html="buttonText"
               />
 

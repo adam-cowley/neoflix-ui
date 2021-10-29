@@ -63,7 +63,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { defineComponent } from 'vue'
 import Placeholder from '@/components/ui/grid/Placeholder.vue'
 import { useGenre } from '@/modules/genres'

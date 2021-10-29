@@ -37,7 +37,6 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable */
 import { api } from '@/modules/api'
 import { useAuth } from '@/modules/auth'
 import { useNotification } from '@/modules/notification'
