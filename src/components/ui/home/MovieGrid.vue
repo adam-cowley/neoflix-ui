@@ -10,7 +10,7 @@
           <MovieGridItem
             v-if="movie"
             :key="movie.tmdbId"
-            :to="{name: 'MovieView', params: {tmdbId: movie.tmdbId}}"
+            :to="{name: 'MovieView', params: movie}"
             :tmdbId="movie.tmdbId"
             :title="movie.title"
             :imdbRating="movie.imdbRating"

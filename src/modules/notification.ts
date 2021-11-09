@@ -30,8 +30,6 @@ export function useNotification(): NotificationHook {
   }
 
   const closeNotification = () => {
-    console.log('close it')
-
     state.type = undefined
     state.message = undefined
   }

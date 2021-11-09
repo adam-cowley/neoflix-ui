@@ -27,7 +27,7 @@ export const PERSON_ORDER = [
 export type PersonOrderBy = typeof ORDER_BY_NAME | typeof ORDER_BY_BORN | typeof ORDER_BY_MOVIE_COUNT
 
 export function usePeople(): PaginatedAPIResponse<Person, PersonOrderBy> {
-  return usePaginatedGetRequest<Person, PersonOrderBy>('/people')
+  return usePaginatedGetRequest<Person, PersonOrderBy>('/people', undefined, undefined, 4)
 }
 
 export function usePerson(id: string): APIResponse<Person> {

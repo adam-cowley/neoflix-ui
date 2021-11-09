@@ -8,7 +8,7 @@
   <div v-else>
     <Section
       :title="genre.name"
-      :to="genre.link"
+      :to="{ name: 'GenreView', props: genre }"
       :background="genre.poster"
     />
 

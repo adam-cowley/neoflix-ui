@@ -48,7 +48,7 @@ export default defineComponent({
     RatingForm,
   },
   props: {
-    tmdbId: Number,
+    tmdbId: String,
     count: Number,
   },
   setup() {

@@ -130,7 +130,7 @@ export default defineComponent({
     }
 
     const greeting = computed(() => {
-      let output = 'Welcome back'
+      let output = 'Hey'
 
       if (user.value?.name !== undefined) {
         output += `, ${user.value?.name}`

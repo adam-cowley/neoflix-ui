@@ -111,7 +111,7 @@ export function usePagination<O extends string>(defaultOrderBy: O | undefined, d
   const setLimit = (value: number) => { limit.value = value }
 
   const skip = ref<number>(0)
-  const setSkip = (value: number) => { limit.value = value }
+  const setSkip = (value: number) => { skip.value = value }
 
   const more = ref<boolean>(true)
 
@@ -129,6 +129,7 @@ export function usePagination<O extends string>(defaultOrderBy: O | undefined, d
 }
 
 export interface PaginatedAPIResponse<T, O extends string> extends PaginationFields<O> {
+  q: Ref<string>;
   loading: Ref<boolean>;
   code: Ref<number | undefined>;
   error: Ref<string | undefined>;
@@ -137,6 +138,7 @@ export interface PaginatedAPIResponse<T, O extends string> extends PaginationFie
 }
 
 export function usePaginatedGetRequest<T, O extends string>(url: string, defaultOrderBy?: O | undefined, defaultOrder?: Order | undefined, defaultLimit = 6): PaginatedAPIResponse<T, O> {
+  const q = ref<string>('')
   const loading = ref<boolean>(true)
   const code = ref<number | undefined>()
   const error = ref<string | undefined>()
@@ -154,7 +156,7 @@ export function usePaginatedGetRequest<T, O extends string>(url: string, default
     more,
   } = usePagination<O>(defaultOrderBy, defaultOrder, defaultLimit)
 
-  watch([sort, order], () => {
+  watch([q, sort, order], () => {
     skip.value = 0
     data.value = []
     more.value = true
@@ -177,8 +179,9 @@ export function usePaginatedGetRequest<T, O extends string>(url: string, default
     const query: string[] = []
 
     if (sort.value !== undefined) query.push(`sort=${encodeURIComponent(sort.value as O)}`)
-    if (sort.value !== undefined) query.push(`limit=${encodeURIComponent(limit.value as number)}`)
-    if (skip.value !== undefined) query.push(`skip=${encodeURIComponent(skip.value as number)}`)
+    if (limit.value !== undefined && limit.value > 0) query.push(`limit=${encodeURIComponent(limit.value as number)}`)
+    if (skip.value !== undefined && skip.value > 0) query.push(`skip=${encodeURIComponent(skip.value as number)}`)
+    if (q.value !== undefined && q.value !== '') query.push(`q=${encodeURIComponent(q.value as string)}`)
 
     let fullUrl = url
 
@@ -220,6 +223,7 @@ export function usePaginatedGetRequest<T, O extends string>(url: string, default
   load()
 
   return {
+    q,
     loading,
     code,
     error,

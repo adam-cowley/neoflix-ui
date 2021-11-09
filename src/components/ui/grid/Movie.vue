@@ -33,6 +33,7 @@
         </li>
       </ul>
     </div>
+    <slot />
   </div>
 </template>
 
@@ -55,7 +56,7 @@ export default defineComponent({
   },
   props: {
     to: Object,
-    tmdbId: Number,
+    tmdbId: String,
     poster: String,
     rating: Number,
     imdbRating: Number,
