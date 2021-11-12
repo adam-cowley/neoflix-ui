@@ -207,6 +207,10 @@ export function usePaginatedGetRequest<T, O extends string>(url: string, default
           more.value = false
         }
 
+        if (newData.length < limit.value) {
+          more.value = false
+        }
+
         code.value = res.status
         error.value = undefined
       })

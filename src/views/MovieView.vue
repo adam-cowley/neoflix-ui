@@ -93,10 +93,11 @@
 
           <div class="col-12 col-xl-4">
             <div class="sidebar sidebar--mt">
-            <ratings
-              :tmdbId="movie.tmdbId"
-              :count="movie.ratingCount"
-            />
+              <ratings
+                v-if="movie"
+                :tmdbId="movie.tmdbId"
+                :count="movie.ratingCount"
+              />
             </div>
           </div>
         </div>
@@ -119,9 +120,10 @@
           v-for="m in similar"
           :key="m.tmdbId"
           :to="{name: 'MovieView', params: m}"
+          :tmdbId="m.tmdbId"
           :title="m.title"
           :rating="m.rating"
-          :imdbRating="movie.imdbRating"
+          :imdbRating="m.imdbRating"
           :poster="m.poster"
           :list="m.genres"
           :favorite="movie.favorite"
@@ -176,6 +178,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable */
 import { useMovie, useSimilarMovies } from '@/modules/movies'
 import Grid from '@/components/ui/grid/Grid.vue'
 import Column from '@/components/ui/grid/Column.vue'

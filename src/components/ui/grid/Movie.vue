@@ -1,7 +1,7 @@
 <template>
   <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
     <div class="card" :class="{ 'card__favorited': this.isFavorite === true }">
-      <router-link :to="to" class="card__cover">
+      <router-link :to="{ name: 'MovieView', params: {tmdbId}}" class="card__cover">
         <img :src="posterImage" :alt="title" />
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"

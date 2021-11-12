@@ -10,7 +10,7 @@
     <li
       class="reviews__item"
       v-for="rating in ratings"
-      :key="rating.user.id"
+      :key="rating.user.userId"
     >
       <div class="reviews__autor">
         <!-- <router-link :to="'/user/'+ rating.user.id" class="reviews__name" v-html="rating.user.name" /> -->
