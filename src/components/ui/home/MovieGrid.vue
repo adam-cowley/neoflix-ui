@@ -48,12 +48,12 @@ export default defineComponent({
   props: {
     title: String,
     to: String,
-    orderBy: String,
+    sort: String,
     order: String,
     showLoadMore: Boolean,
   },
   setup(props) {
-    const { loading, data, more, loadMore } = useMovieList(props.orderBy as string, props.order as Order || ORDER_DESC, 6)
+    const { loading, data, more, loadMore } = useMovieList(props.sort as string, props.order as Order || ORDER_DESC, 6)
 
     return {
       loading,

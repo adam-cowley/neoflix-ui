@@ -25,8 +25,8 @@
     </div>
   </section>
 
-  <movie-grid title="Popular Movies" to="/popular" orderBy="imdbRating" />
-  <movie-grid title="Latest Releases" to="/latest" orderBy="released" />
+  <movie-grid title="Popular Movies" to="/popular" sort="imdbRating" />
+  <movie-grid title="Latest Releases" to="/latest" sort="released" />
 </template>
 
 <script lang="ts">

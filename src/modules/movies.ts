@@ -40,8 +40,8 @@ export const MOVIE_ORDER = [
 
 export type MovieOrderBy = typeof ORDER_BY_TITLE | typeof ORDER_BY_RATING | typeof ORDER_BY_RELEASE
 
-export function useMovieList(orderBy: string, order: Order, limit = 6): PaginatedAPIResponse<Movie, MovieOrderBy> {
-  return usePaginatedGetRequest<Movie, MovieOrderBy>(`/movies?orderBy=${orderBy}&order=${order}&limit=${limit}`)
+export function useMovieList(sort: string, order: Order, limit = 6): PaginatedAPIResponse<Movie, MovieOrderBy> {
+  return usePaginatedGetRequest<Movie, MovieOrderBy>(`/movies?sort=${sort}&order=${order}&limit=${limit}`)
 }
 
 export function useMoviesByGenre(genre: string): PaginatedAPIResponse<Movie, MovieOrderBy> {

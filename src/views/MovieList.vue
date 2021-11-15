@@ -2,7 +2,7 @@
   <movie-grid
     :title="title"
     :to="path"
-    :orderBy="orderBy"
+    :sort="sort"
     :order="order"
     :showLoadMore="true"
   />
@@ -24,24 +24,24 @@ export default defineComponent({
     const path = route.path.substr(1)
 
     let title = 'Movies'
-    let orderBy: MovieOrderBy = ORDER_BY_RELEASE
+    let sort: MovieOrderBy = ORDER_BY_RELEASE
 
     switch (path) {
       case 'popular':
         title = 'Popular Movies'
-        orderBy = ORDER_BY_RATING
+        sort = ORDER_BY_RATING
         break
 
       case 'latest':
         title = 'Latest Releases'
-        orderBy = ORDER_BY_RELEASE
+        sort = ORDER_BY_RELEASE
         break
     }
 
     return {
       title,
       path,
-      orderBy,
+      sort,
       order: ORDER_DESC,
     }
   },
