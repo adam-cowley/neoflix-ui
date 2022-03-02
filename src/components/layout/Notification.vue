@@ -13,15 +13,15 @@ import { defineComponent } from 'vue'
 import { useNotification } from '@/modules/notification'
 
 export default defineComponent({
-  setup() {
+  setup () {
     const { message, type, closeNotification } = useNotification()
 
     return {
       message,
       type,
-      closeNotification,
+      closeNotification
     }
-  },
+  }
 })
 </script>
 

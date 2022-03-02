@@ -54,7 +54,7 @@ export default defineComponent({
   props: {
     tmdbId: String
   },
-  setup(props) {
+  setup (props) {
     const { authenticated } = useAuth()
     const rating = ref<string>('5')
     const confirmation = ref()
@@ -82,9 +82,9 @@ export default defineComponent({
       error,
       confirmation,
       post,
-      onSubmit,
+      onSubmit
     }
-  },
+  }
 })
 </script>
 

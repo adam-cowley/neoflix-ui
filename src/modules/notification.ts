@@ -19,9 +19,9 @@ interface NotificationState {
 
 const state = reactive<NotificationState>({
   message: undefined,
-  type: undefined,
+  type: undefined
 })
-export function useNotification(): NotificationHook {
+export function useNotification (): NotificationHook {
   const setNotification = (type: NotificationType, message: string) => {
     state.type = type
     state.message = message
@@ -37,6 +37,6 @@ export function useNotification(): NotificationHook {
   return {
     setNotification,
     closeNotification,
-    ...toRefs(state),
+    ...toRefs(state)
   }
 }

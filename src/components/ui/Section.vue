@@ -24,8 +24,8 @@ export default defineComponent({
     title: String,
     background: {
       type: String,
-      required: false,
+      required: false
     }
-  },
+  }
 })
 </script>

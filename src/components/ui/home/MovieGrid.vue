@@ -43,16 +43,16 @@ export default defineComponent({
   components: {
     Section,
     Grid,
-    MovieGridItem,
+    MovieGridItem
   },
   props: {
     title: String,
     to: String,
     sort: String,
     order: String,
-    showLoadMore: Boolean,
+    showLoadMore: Boolean
   },
-  setup(props) {
+  setup (props) {
     const { loading, data, more, loadMore } = useMovieList(props.sort as string, props.order as Order || ORDER_DESC, 6)
 
     return {
@@ -61,6 +61,6 @@ export default defineComponent({
       more,
       loadMore
     }
-  },
+  }
 })
 </script>

@@ -45,13 +45,13 @@ import RatingForm from '@/components/ui/article/RatingForm.vue'
 
 export default defineComponent({
   components: {
-    RatingForm,
+    RatingForm
   },
   props: {
     tmdbId: String,
-    count: Number,
+    count: Number
   },
-  setup() {
+  setup () {
     const { params } = useRoute()
     const { data: ratings, loading, more, loadMore } = useMovieRatings(
       params.tmdbId,
@@ -62,7 +62,7 @@ export default defineComponent({
       ratings,
       loading,
       more,
-      loadMore,
+      loadMore
     }
   }
 })

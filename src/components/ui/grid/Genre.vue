@@ -19,10 +19,10 @@ export default defineComponent({
     to: Object,
     poster: String,
     name: String,
-    movies: Number,
+    movies: Number
   },
   computed: {
-    posterImage() {
+    posterImage () {
       return this.poster || '/img/poster-placeholder.png'
     }
   }

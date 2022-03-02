@@ -173,9 +173,9 @@ export default defineComponent({
   components: {
     Grid,
     MovieGridItem,
-    PersonGridItem,
+    PersonGridItem
   },
-  setup() {
+  setup () {
     const { params } = useRoute()
     const { loading, data, error } = usePerson(params.tmdbId as string)
 
@@ -189,14 +189,14 @@ export default defineComponent({
       loading: actedInLoading,
       data: actedIn,
       more: actedInMore,
-      loadMore: actedInLoadMore,
+      loadMore: actedInLoadMore
     } = useMoviesByActor(params.tmdbId as string)
 
     const {
       loading: directedLoading,
       data: directed,
       more: directedMore,
-      loadMore: directedLoadMore,
+      loadMore: directedLoadMore
     } = useMoviesByDirector(params.tmdbId as string)
 
     const { loading: similarLoading, data: similar } = useSimilarPeople(
@@ -222,9 +222,9 @@ export default defineComponent({
       directedLoadMore,
 
       similarLoading,
-      similar,
+      similar
     }
-  },
+  }
 })
 </script>
 

@@ -72,8 +72,8 @@ export default defineComponent({
     error: String,
     details: Object,
     buttonText: String,
-    onSubmit: Function,
-  },
+    onSubmit: Function
+  }
 })
 </script>
 

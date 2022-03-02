@@ -16,7 +16,7 @@ export default defineComponent({
   components: {
     Header,
     Footer,
-    Notification,
+    Notification
   }
 })
 </script>

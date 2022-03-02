@@ -63,8 +63,8 @@ export default defineComponent({
     image: String,
     rating: Number,
     title: String,
-    list: [String],
-  },
+    list: [String]
+  }
 })
 </script>
 

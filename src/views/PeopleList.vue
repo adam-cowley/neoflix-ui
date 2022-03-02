@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent } from 'vue'
 import Grid from '@/components/ui/grid/Grid.vue'
 import Hero from '@/components/layout/Hero.vue'
 import Person from '@/components/ui/grid/Person.vue'
@@ -73,10 +73,10 @@ export default defineComponent({
     Grid,
     Hero,
     Person,
-    Placeholder,
+    Placeholder
   },
-  setup() {
-    const { q, loading, data, more, loadMore, sort, setSort, limit } = usePeople()
+  setup () {
+    const { q, loading, data, more, loadMore, sort, setSort } = usePeople()
 
     return {
       loading,
@@ -86,9 +86,9 @@ export default defineComponent({
       sort,
       setSort,
       orderBy: PERSON_ORDER,
-      q,
+      q
     }
-  },
+  }
 })
 </script>
 

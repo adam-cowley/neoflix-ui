@@ -35,14 +35,14 @@ export default defineComponent({
     Hero,
     Grid,
     Genre,
-    Placeholder,
+    Placeholder
   },
-  setup() {
+  setup () {
     const { loading, data: genres } = useGenres()
 
     return {
       loading,
-      genres: genres,
+      genres: genres
     }
   }
 })

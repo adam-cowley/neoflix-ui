@@ -7,7 +7,7 @@ import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
-  setup() {
+  setup () {
     const { logout } = useAuth()
     const { push } = useRouter()
 
@@ -15,6 +15,6 @@ export default defineComponent({
       .then(() => {
         push({ name: 'Home' })
       })
-  },
+  }
 })
 </script>

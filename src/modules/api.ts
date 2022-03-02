@@ -1,5 +1,5 @@
 import { ref, shallowRef, Ref, watch } from 'vue'
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 
 export const ORDER_ASC = 'asc'
 export const ORDER_DESC = 'desc'
@@ -7,7 +7,7 @@ export const ORDER_DESC = 'desc'
 export type Order = typeof ORDER_ASC | typeof ORDER_DESC
 
 export const api = axios.create({
-  baseURL: process.env.VUE_APP_API_BASE_URL || '/api',
+  baseURL: process.env.VUE_APP_API_BASE_URL || '/api'
 })
 
 export interface APIResponse<T> {
@@ -17,14 +17,14 @@ export interface APIResponse<T> {
   data: Ref<T | undefined>;
 }
 
-export function useGetRequest<T>(url: string): APIResponse<T> {
+export function useGetRequest<T> (url: string): APIResponse<T> {
   const loading = ref<boolean>(true)
   const code = ref<number | undefined>()
   const error = ref<string | undefined>()
   const data = ref<T | undefined>()
 
   api.get(url)
-    .then(res => {
+    .then((res: AxiosResponse<T>) => {
       code.value = res.status
       data.value = res.data
       error.value = undefined
@@ -42,7 +42,7 @@ export function useGetRequest<T>(url: string): APIResponse<T> {
     loading,
     code,
     error,
-    data,
+    data
   }
 }
 
@@ -61,7 +61,7 @@ export function usePostRequest<Req extends Record<string, any>, Res>(url: string
     loading.value = true
 
     api.post(url, payload)
-      .then(res => {
+      .then((res: AxiosResponse<Res>) => {
         code.value = res.status
         data.value = res.data as Res | undefined
         error.value = undefined
@@ -81,7 +81,7 @@ export function usePostRequest<Req extends Record<string, any>, Res>(url: string
     loading,
     code,
     error,
-    data,
+    data
   }
 }
 
@@ -98,7 +98,7 @@ interface PaginationFields<O extends string> {
   more: Ref<boolean>;
 }
 
-export function usePagination<O extends string>(defaultOrderBy: O | undefined, defaultOrder: Order | undefined, defaultLimit = 6): PaginationFields<O> {
+export function usePagination<O extends string> (defaultOrderBy: O | undefined, defaultOrder: Order | undefined, defaultLimit = 6): PaginationFields<O> {
   const sort: Ref<O | undefined> = shallowRef(defaultOrderBy)
   const setSort = (value: O | undefined) => {
     sort.value = value
@@ -124,7 +124,7 @@ export function usePagination<O extends string>(defaultOrderBy: O | undefined, d
     setLimit,
     skip,
     setSkip,
-    more,
+    more
   }
 }
 
@@ -137,7 +137,7 @@ export interface PaginatedAPIResponse<T, O extends string> extends PaginationFie
   loadMore: (reset: boolean) => void,
 }
 
-export function usePaginatedGetRequest<T, O extends string>(url: string, defaultOrderBy?: O | undefined, defaultOrder?: Order | undefined, defaultLimit = 6): PaginatedAPIResponse<T, O> {
+export function usePaginatedGetRequest<T, O extends string> (url: string, defaultOrderBy?: O | undefined, defaultOrder?: Order | undefined, defaultLimit = 6): PaginatedAPIResponse<T, O> {
   const q = ref<string>('')
   const loading = ref<boolean>(true)
   const code = ref<number | undefined>()
@@ -153,7 +153,7 @@ export function usePaginatedGetRequest<T, O extends string>(url: string, default
     setLimit,
     skip,
     setSkip,
-    more,
+    more
   } = usePagination<O>(defaultOrderBy, defaultOrder, defaultLimit)
 
   watch([q, sort, order], () => {
@@ -241,6 +241,6 @@ export function usePaginatedGetRequest<T, O extends string>(url: string, default
     order,
     setOrder,
     more,
-    loadMore,
+    loadMore
   }
 }

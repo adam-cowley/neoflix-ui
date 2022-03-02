@@ -39,13 +39,13 @@ import { useRouter } from 'vue-router'
 import FormWrapper from '@/components/ui/form/FormWrapper.vue'
 
 export default defineComponent({
-  setup() {
-    const { user, error, login } = useAuth()
+  setup () {
+    const { user, error, details, login } = useAuth()
     const { push } = useRouter()
 
     const state = reactive<LoginRequest>({
       email: '',
-      password: '',
+      password: ''
     })
 
     const onSubmit = () => {
@@ -62,13 +62,14 @@ export default defineComponent({
     return {
       user,
       error,
+      details,
       onSubmit,
-      ...toRefs(state),
+      ...toRefs(state)
     }
   },
   components: {
-    FormWrapper,
-  },
+    FormWrapper
+  }
 })
 </script>
 

@@ -56,17 +56,17 @@ export default defineComponent({
     Section,
     Column,
     Grid,
-    MovieGridItem,
+    MovieGridItem
   },
-  setup() {
+  setup () {
     const { loading, data, error, code } = useGetRequest('/account/favorites')
 
     return {
       loading,
       data,
       error,
-      code,
+      code
     }
-  },
+  }
 })
 </script>

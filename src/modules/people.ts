@@ -21,19 +21,19 @@ export const ORDER_BY_MOVIE_COUNT = 'movieCount'
 export const PERSON_ORDER = [
   { value: ORDER_BY_NAME, label: 'Name' },
   { value: ORDER_BY_BORN, label: 'Age' },
-  { value: ORDER_BY_MOVIE_COUNT, label: 'Movies' },
+  { value: ORDER_BY_MOVIE_COUNT, label: 'Movies' }
 ]
 
 export type PersonOrderBy = typeof ORDER_BY_NAME | typeof ORDER_BY_BORN | typeof ORDER_BY_MOVIE_COUNT
 
-export function usePeople(): PaginatedAPIResponse<Person, PersonOrderBy> {
+export function usePeople (): PaginatedAPIResponse<Person, PersonOrderBy> {
   return usePaginatedGetRequest<Person, PersonOrderBy>('/people', undefined, undefined, 4)
 }
 
-export function usePerson(id: string): APIResponse<Person> {
+export function usePerson (id: string): APIResponse<Person> {
   return useGetRequest(`/people/${id}`)
 }
 
-export function useSimilarPeople(id: string): APIResponse<Person[]> {
+export function useSimilarPeople (id: string): APIResponse<Person[]> {
   return useGetRequest(`/people/${id}/similar`)
 }

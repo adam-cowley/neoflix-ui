@@ -37,7 +37,7 @@ import MovieGrid from '@/components/ui/home/MovieGrid.vue'
 export default defineComponent({
   name: 'Home',
   components: {
-    MovieGrid,
-  },
+    MovieGrid
+  }
 })
 </script>

@@ -11,6 +11,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'GridPlaceholder',
+  name: 'GridPlaceholder'
 })
 </script>

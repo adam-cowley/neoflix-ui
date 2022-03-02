@@ -77,12 +77,12 @@ export default defineComponent({
     poster: String,
     born: null,
     bornIn: String,
-    role: [String, undefined],
+    role: [String, undefined]
   },
   computed: {
-    posterImage() {
+    posterImage () {
       return this.poster || '/img/poster-placeholder.png'
-    },
-  },
+    }
+  }
 })
 </script>

@@ -126,7 +126,7 @@
           :imdbRating="m.imdbRating"
           :poster="m.poster"
           :list="m.genres"
-          :favorite="movie.favorite"
+          :favorite="m.favorite"
         >
 
           <div class="card__extra">

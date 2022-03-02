@@ -1,4 +1,4 @@
-# neoflix-ui
+# neoflix-ui-latest
 
 ## Project setup
 ```

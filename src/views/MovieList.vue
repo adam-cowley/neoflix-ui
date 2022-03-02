@@ -17,9 +17,9 @@ import MovieGrid from '@/components/ui/home/MovieGrid.vue'
 
 export default defineComponent({
   components: {
-    MovieGrid,
+    MovieGrid
   },
-  setup() {
+  setup () {
     const route = useRoute()
     const path = route.path.substr(1)
 
@@ -42,8 +42,8 @@ export default defineComponent({
       title,
       path,
       sort,
-      order: ORDER_DESC,
+      order: ORDER_DESC
     }
-  },
+  }
 })
 </script>

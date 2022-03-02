@@ -39,10 +39,10 @@ const state = reactive<AuthState>({
   user: undefined,
   token: undefined,
   error: undefined,
-  details: undefined,
+  details: undefined
 })
 
-export function useAuth(): AuthHook {
+export function useAuth (): AuthHook {
   const register = (email: string, password: string, name: string) => {
     api.post<RegisterRequest, User>('/auth/register', { email, password, name })
       // eslint-disable-next-line
@@ -86,6 +86,7 @@ export function useAuth(): AuthHook {
       state.user = undefined
       state.token = undefined
 
+      // @ts-ignore
       delete api.defaults.headers?.Authorization
 
       resolve()
@@ -99,6 +100,6 @@ export function useAuth(): AuthHook {
     login,
     logout,
     authenticated,
-    ...toRefs(state),
+    ...toRefs(state)
   }
 }

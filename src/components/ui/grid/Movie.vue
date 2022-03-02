@@ -45,13 +45,13 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'MovieGridItem',
-  setup() {
+  setup () {
     const { setNotification } = useNotification()
     const { authenticated } = useAuth()
 
     return {
       authenticated,
-      setNotification,
+      setNotification
     }
   },
   props: {
@@ -62,20 +62,20 @@ export default defineComponent({
     imdbRating: Number,
     title: String,
     list: [Object],
-    favorite: Boolean,
+    favorite: Boolean
   },
-  data: function() {
+  data: function () {
     return {
       isFavorite: this.favorite === true
     }
   },
   computed: {
-    posterImage() {
+    posterImage () {
       return this.poster || '/img/poster-placeholder.png'
-    },
+    }
   },
   methods: {
-    toggleFavorite() {
+    toggleFavorite () {
       if (this.isFavorite) {
         api.delete(`/account/favorites/${this.tmdbId}`)
           // eslint-disable-next-line
@@ -93,8 +93,8 @@ export default defineComponent({
             this.setNotification('success', 'This movie has been added to your favorites')
           })
       }
-    },
-  },
+    }
+  }
 })
 </script>
 

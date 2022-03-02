@@ -121,7 +121,7 @@ import { useAuth } from '@/modules/auth'
 
 export default defineComponent({
   name: 'Header',
-  setup() {
+  setup () {
     const { user } = useAuth()
 
     const menu = ref<boolean>(false)
@@ -143,9 +143,9 @@ export default defineComponent({
       menu,
       toggleMenu,
       user,
-      greeting,
+      greeting
     }
-  },
+  }
 })
 </script>
 

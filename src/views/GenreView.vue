@@ -77,9 +77,9 @@ export default defineComponent({
     Section,
     Grid,
     MovieGridItem,
-    Placeholder,
+    Placeholder
   },
-  setup() {
+  setup () {
     const { params } = useRoute()
 
     const { loading: genreLoading, data: genre } = useGenre(params.name)
@@ -94,8 +94,8 @@ export default defineComponent({
       more,
       orderBy: MOVIE_ORDER,
       sort,
-      setSort,
+      setSort
     }
-  },
+  }
 })
 </script>
