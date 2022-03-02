@@ -56,12 +56,17 @@ export default defineComponent({
   },
   setup(props) {
     const { authenticated } = useAuth()
-    const rating = ref<number>(5)
+    const rating = ref<string>('5')
     const confirmation = ref()
     const { loading, error, post, data } = usePostRequest<RatingPayload, Movie>(`/account/ratings/${props.tmdbId}`)
 
     const onSubmit = () => {
-      post({ rating: rating.value })
+      const ratingInt = parseInt(rating.value)
+      if (!ratingInt) {
+        return
+      }
+
+      post({ rating: ratingInt })
     }
 
     watch([data], () => {

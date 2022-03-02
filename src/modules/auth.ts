@@ -86,7 +86,7 @@ export function useAuth(): AuthHook {
       state.user = undefined
       state.token = undefined
 
-      Object.assign(api.defaults, { headers: { Authorization: undefined } })
+      delete api.defaults.headers?.Authorization
 
       resolve()
     })
